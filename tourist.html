@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--leaflet-->
+    <link rel="stylesheet" href="src/leaflet.css" />
+    <script src="src/leaflet.js"></script>
+
+    <link rel="stylesheet" href="src/css/bootstrap.css" />
+    <script src="src/jquery-3.2.0.min.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/L.Control.Pan.css" />
+    <script src="src/plugins/L.Control.Pan.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/L.Control.Zoomslider.css" />
+    <script src="src/plugins/L.Control.Zoomslider.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/L.Control.MousePosition.css" />
+    <script src="src/plugins/L.Control.MousePosition.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/Leaflet.PolylineMeasure.css" />
+    <script src="src/plugins/Leaflet.PolylineMeasure.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/easy-button.css" />
+    <script src="src/plugins/easy-button.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/L.Control.Sidebar.css" />
+    <script src="src/plugins/L.Control.Sidebar.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/opencage/src/css/L.Control.OpenCageSearch.css" />
+    <script src="src/plugins/opencage/src/js/L.Control.OpenCageSearch.js"></script>
+
+    <link rel="stylesheet" href="src/plugins/leaflet-styleeditor/css/Leaflet.StyleEditor.css" />
+    <script src="src/plugins/leaflet-styleeditor/javascript/Leaflet.StyleEditor.js"></script>
+    <script src="src/plugins/leaflet-styleeditor/javascript/Leaflet.StyleForms.js"></script>
+
+    <script src="src/plugins/leaflet-providers.js"></script>
+
+    <!--    ***************  Begin Leaflet.Draw-->
+
+    <script src="src/plugins/leaflet-draw/Leaflet.draw.js"></script>
+    <script src="src/plugins/leaflet-draw/Leaflet.Draw.Event.js"></script>
+    <link rel="stylesheet" href="src/plugins/leaflet-draw/leaflet.draw.css" />
+
+    <script src="src/plugins/leaflet-draw/Toolbar.js"></script>
+    <script src="src/plugins/leaflet-draw/Tooltip.js"></script>
+
+    <script src="src/plugins/leaflet-draw/ext/GeometryUtil.js"></script>
+    <script src="src/plugins/leaflet-draw/ext/LatLngUtil.js"></script>
+    <script src="src/plugins/leaflet-draw/ext/LineUtil.Intersect.js"></script>
+    <script src="src/plugins/leaflet-draw/ext/Polygon.Intersect.js"></script>
+    <script src="src/plugins/leaflet-draw/ext/Polyline.Intersect.js"></script>
+    <script src="src/plugins/leaflet-draw/ext/TouchEvents.js"></script>
+
+    <script src="src/plugins/leaflet-draw/draw/DrawToolbar.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Feature.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Polyline.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Circle.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Marker.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Polygon.js"></script>
+    <script src="src/plugins/leaflet-draw/draw/handler/Draw.Rectangle.js"></script>
+
+
+    <script src="src/plugins/leaflet-draw/edit/EditToolbar.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/EditToolbar.Delete.js"></script>
+
+    <script src="src/plugins/leaflet-draw/Control.Draw.js"></script>
+
+    <script src="src/plugins/leaflet-draw/edit/handler/Edit.Poly.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/Edit.Circle.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/Edit.Rectangle.js"></script>
+    <script src="src/plugins/leaflet-draw/edit/handler/Edit.Marker.js"></script>
+
+    <!--    **************  End of Lealet Draw-->
+    <script src="src/plugins/leaflet.ajax.min.js"></script>
+    <!--Leaflet sprite plugin-->
+    <script src="src/plugins/leaflet.sprite.js"></script>
+
+    <!-- Font awsome -->
+    <link rel="stylesheet" href="src/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="src/plugins/MarkerCluster.css">
+    <link rel="stylesheet" href="src/plugins/MarkerCluster.Default.css">
+    <script src="src/plugins/leaflet.markercluster.js"></script>
+    <!-- jquery autocomplete -->
+    <link rel="stylesheet" href="src/jquery-ui.min.css">
+    <script src="src/jquery-ui.min.js"></script>
+    <!-- leaflet geometry utill -->
+    <script src="src/plugins/leaflet.geometryutil.js"></script>
+    <!-- turf on boa -->
+    <script src="src/turf.min.js"></script>
+    <!-- geocorder -->
+    <link rel="stylesheet" href="src/plugins/geocorder/css/leaflet-routing-machine.css">
+    <script src="src/plugins/geocorder/js/config.js"></script>
+    <script src="src/plugins/geocorder/js/leaflet-routing-machine.js"></script>
+    <script src="src/plugins/geocorder/js/Control.Geocoder.js"></script>
+    <!-- leaflet compass -->
+    <link rel="stylesheet" href="src/plugins/location-compass/location-compass.css">
+    <script src="src/plugins/location-compass/location_compass.js"></script>
+
+    <style>
+        #mapdiv {
+            height: 100vh;
+        }
+
+        #side-bar {
+            background-color: rgb(255, 255, 255);
+        }
+
+        .col-xs-12,
+        .col-xs-6,
+        .col-xs-4 {
+            padding: 3px;
+        }
+
+        #divProject {
+            background-color: beige;
+        }
+
+        #divPark {
+            background-color: #ffffb3;
+        }
+
+        #divEagle {
+            background-color: #ccffb3;
+        }
+
+        #divRaptor {
+            background-color: #e6ffff;
+        }
+
+        .errorMsg {
+            padding: 0;
+            text-align: center;
+            background-color: darksalmon;
+        }
+
+        /* .results {
+            background-color: white;
+            opacity: 0.8;
+            position: absolute;
+            top: 1px;
+            right: 1px;
+            width: 320px;
+            height: 480px;
+            overflow-y: scroll;
+        } */
+    </style>
+</head>
+
+<body>
+    <div id="side-bar" class="col-md-4">
+        <button id="btnLocate" class="btn btn-primary btn-block">Locate</button>
+        <div id="divProject" class="col-xs-12">
+            <div id="divProjectLabel" class="text-center col-xs-12">
+                <h4 id="lblProject">Nearest Hotel</h4>
+            </div>
+            <div id="divProjectError" class="errorMsg col-xs-12"></div>
+            <div id="divFindProject" class="form-group has-error">
+                <div class="col-xs-6">
+                    <input type="text" id="txtFindProject" class="form-control" placeholder="Project ID">
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnFindProject" class="btn btn-primary btn-block" disabled>Find Hotel</button>
+                </div>
+            </div>
+            <div class="col-xs-12" id="divFilterHotelt">
+                <div class="col-xs-4">
+                    <input type="checkbox" name="fltProject" value="Hotel" checked>Hotel<br>
+                    <input type="checkbox" name="fltProject" value="Road" checked>Access Roads
+                    <button id="btnProjectFilterAll" class="btn btn-primary btn-block">Check All</button>
+                </div>
+                <div class="col-xs-4">
+                    <input type="checkbox" name="fltProject" value="Electric" checked>Bar<br>
+                    <input type="checkbox" name="fltProject" value="Extraction" checked>restraunts
+                    <button id="btnProjectFilterNone" class="btn btn-primary btn-block">UnCheck All</button>
+                </div>
+                <div class="col-xs-4">
+                    <input type="checkbox" name="fltProject" value="Flowline" checked>5Star Hotels<br>
+                    <input type="checkbox" name="fltProject" value="Other" checked>Other
+                    <button id="btnProjectFilter" class="btn btn-primary btn-block">Filter</button>
+                </div>
+            </div>
+            <div class="" id="divProjectData"></div>
+        </div>
+        <div id="divPark" class="col-xs-12">
+            <div id="divBUOWLLabel" class="text-center col-xs-12">
+                <h4 id="lblPark">National parks</h4>
+            </div>
+            <div id="divParkError" class="errorMsg col-xs-12"></div>
+            <div id="divFindPark" class="form-group has-error">
+                <div class="col-xs-6">
+                    <input type="text" id="txtFindPark" class="form-control" placeholder=" Park ID">
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnFindPark" class="btn btn-primary btn-block" disabled>Find Park</button>
+                </div>
+            </div>
+            <div id="divFilterPark" class="col-xs-12">
+                <div class="col-xs-4">
+                    <input type='radio' name='fltpark' value='ALL' checked>All
+                </div>
+                <div class="col-xs-4">
+                    <input type='radio' name='fltpark' value='Major'>Major Parks
+                </div>
+                <div class="col-xs-4">
+                    <input type='radio' name='fltPark' value='Reserves'>Game Reserves
+                </div>
+            </div>
+            <div class="" id="divParkData"></div>
+        </div>
+        <div id="divCamp" class="col-xs-12">
+            <div id="divCampLabel" class="text-center col-xs-12">
+                <h4 id="lblCamp">Camp</h4>
+            </div>
+            <div id="divCampError" class="errorMsg col-xs-12"></div>
+            <div id="divFindCamp" class="form-group has-error">
+                <div class="col-xs-6">
+                    <input type="text" id="txtFindCamp" class="form-control" placeholder="Camp ID">
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnFindCamp" class="btn btn-primary btn-block">Find Camp</button>
+                </div>
+            </div>
+            <div id="divFilterCamp" class="col-xs-12">
+                <div class="col-xs-4">
+                    <input type='radio' name='fltCamp' value='ALL' checked>All
+                </div>
+                <div class="col-xs-4">
+                    <input type='radio' name='fltCamp' value='Campsites'>Campsites
+                </div>
+                <div class="col-xs-4">
+                    <input type='radio' name='fltCamp' value='Tented'>Tented
+                </div>
+            </div>
+            <div class="" id="divCampData"></div>
+        </div>
+        <!-- <div id="divRaptor" class="col-xs-12">
+            <div id="divRaptorLabel" class="text-center col-xs-12">
+                <h4 id="lblRaptor">Raptor Nests</h4>
+            </div>
+            <div id="divRaptorError" class="errorMsg col-xs-12"></div>
+            <div id="divFindRaptor" class="form-group has-error">
+                <div class="col-xs-6">
+                    <input type="text" id="txtFindRaptor" class="form-control" placeholder="Raptor Nest ID">
+                </div>
+                <div class="col-xs-6">
+                    <button id="btnFindRaptor" class="btn btn-primary btn-block" disabled>Find Raptor Nest</button>
+                </div>
+            </div>
+            <div id="divFilterRaptor" class="col-xs-12">
+                <div class="col-xs-3">
+                    <input type='radio' name='fltRaptor' value='ALL' checked>All
+                </div>
+                <div class="col-xs-3">
+                    <input type='radio' name='fltRaptor' value='ACTIVE NEST'>Active
+                </div>
+                <div class="col-xs-3">
+                    <input type='radio' name='fltRaptor' value='INACTIVE NEST'>Inactive
+                </div>
+                <div class="col-xs-3">
+                    <input type='radio' name='fltRaptor' value='FLEDGED NEST'>Fledged
+                </div>
+            </div>
+            <div class="" id="divRaptorData"></div>
+        </div> -->
+    </div>
+    <div id="mapdiv" class="col-md-12"></div>
+    <script>
+        var mymap;
+        var control;
+        var lyrOSM;
+        var lyrWatercolor;
+        var lyrTopo;
+        var lyrImagery;
+        var lyrOutdoors;
+        var lyrGiraff;
+        var lyrLakes;
+        var lyrLodge;
+        var lyrHotels
+        var lyrwilsBeast;
+        var lyrRivers;
+        var lyrRoads;
+        var lyrTowns;
+        var mrkCurrentLocation;
+        var fgpDrawnItems;
+        var objBasemaps;
+        var objOverlays;
+        var ctlAttribute;
+        var ctlDraw;
+        var ctlSearch;
+        var ctlScale;
+        var ctlSidebar;
+        var ctlMeasure;
+        var ctlCompass;
+        var ctlEasybutton;
+        var lyrMarkerCluster;
+        var arHotelIDs = [];
+
+
+
+        $(document).ready(function () {
+            mymap = L.map("mapdiv", {
+                center: [1.2921, 36.8219],
+                zoom: 8,
+                zoomControl: false,
+                attributionControl: false,
+            });
+            // Geo routing
+            control = L.Routing.control(
+                
+                L.extend(window.lrmConfig,
+                    {
+                        waypoints: [
+                            L.latLng(-0.2967567, 36.0194517),
+                            L.latLng(-0.2861418, 36.033979)
+                        ],
+                        geocoder: L.Control.Geocoder.nominatim(),
+                        routeWhileDragging: true,
+                        reverseWaypoints: true,
+                        showAlternatives: true,
+                        altLineOptions: {
+                            styles: [
+                                { color: 'black', opacity: 0.15, weight: 9 },
+                                { color: 'white', opacity: 0.8, weight: 6 },
+                                { color: 'blue', opacity: 0.5, weight: 2 }
+                            ]
+                        },
+                        position: "bottomright"
+                    })).addTo(mymap);
+
+            // end of georouting
+            L.Routing.errorControl(control).addTo(mymap);
+            lyrOSM = L.tileLayer.provider("OpenStreetMap.Mapnik");
+            lyrTopo = L.tileLayer.provider("OpenTopoMap");
+            lyrImagery = L.tileLayer.provider("Esri.WorldImagery");
+            lyrOutdoors = L.tileLayer.provider("Thunderforest.Outdoors");
+            lyrWatercolor = L.tileLayer.provider("Stamen.Watercolor");
+            mymap.addLayer(lyrOSM);
+
+
+            objBasemaps = {
+                "Open Street Maps": lyrOSM,
+                "Topo Map": lyrTopo,
+                Imagery: lyrImagery,
+                Outdoors: lyrOutdoors,
+                Watercolor: lyrWatercolor,
+            };
+
+            fgpDrawnItems = new L.featureGroup();
+            fgpDrawnItems.addTo(mymap);;
+            // adding geojsons datasets
+            // hotels
+            lyrGiraff = L.geoJSON.ajax('geojson/girraphs.geojson').addTo(mymap);
+            lyrGiraff.on('data:loaded', function () {
+                // lyrMarkerCluster.clearLayers();
+                // lyrMarkerCluster.addLayer(lyrGiraff);
+                // lyrMarkerCluster.addTo(mymap);
+            })
+            // lakes
+            lyrLakes = L.geoJSON.ajax('geojson/lakes.geojson', { style: { color: 'blue', dashArray: '5.5' } }).addTo(mymap);
+            lyrLakes.on('data:loaded', function () {
+
+            })
+            // lodges
+            lyrHotels = L.geoJSON.ajax('geojson/hetels.geojson', { style: { color: 'red' }, }).addTo(mymap);
+            lyrHotels.on('data:loaded', function () {
+                lyrMarkerCluster.clearLayers();
+                lyrMarkerCluster.addLayer(lyrHotels);
+                lyrMarkerCluster.addTo(mymap);
+            })
+            // rovers
+            // lyrRivers = L.geoJSON.ajax('geojson/rivers.geojson').addTo(mymap);
+
+            // towns
+            lyrMarkerCluster = L.markerClusterGroup();
+            lyrtowns = L.geoJSON.ajax('geojson/towns.geojson');
+            lyrtowns.on('data:loaded', function () {
+                // arRaptorIDs.sort(function (a, b) { return a - b });
+                // $("#txtFindRaptor").autocomplete({
+                //     source: arRaptorIDs
+                // });
+                lyrMarkerCluster.clearLayers();
+                lyrMarkerCluster.addLayer(lyrtowns);
+                lyrMarkerCluster.addTo(mymap);
+            });
+            // wildbeast
+            lyrwilsBeast = L.geoJSON.ajax('geojson/wildbeast.geojson').addTo(mymap);
+            lyrwilsBeast.on('data:loaded', function () {
+
+            })
+            // fit bounds functionalitie
+            // lyrClientLines = L.geoJSON.ajax('geojson/client_lines.geojson').addTo(mymap);
+            objOverlays = {
+                // "Hotels":hoyelsMain,
+                "Drawn Items": fgpDrawnItems,
+                "Hotels": lyrHotels,
+                "Giraff": lyrGiraff,
+                "Lakes": lyrLakes,
+                // "Major Rivers": lyrRivers,
+                "Town": lyrtowns,
+                "WildBeasts": lyrwilsBeast
+            };
+
+            ctlLayers = L.control.layers(objBasemaps, objOverlays).addTo(mymap);
+            // measure tool
+            ctlMeasure = L.control
+                .polylineMeasure({ showBearings: true, showClearControl: true })
+                .addTo(mymap);
+            // This is the control layers of of side bar
+            ctlSidebar = L.control.sidebar("side-bar").addTo(mymap);
+            ctlEasybutton = L.easyButton("glyphicon-triangle-right", function () {
+                ctlSidebar.show();
+            }).addTo(mymap);
+            ctlEasybutton = L.easyButton("glyphicon-triangle-left", function () {
+                ctlSidebar.hide();
+            }).addTo(mymap);
+            // search tool opencage
+            ctlSearch = L.Control.openCageSearch({
+                key: "282e31eed3334e838af316379b515277",
+                limit: 10,
+            }).addTo(mymap);
+            // end of search bar
+
+            // attributtion
+            ctlAttribute = L.control
+                .attribution({ position: "bottomleft" })
+                .addTo(mymap);
+            ctlAttribute.addAttribution("OSM");
+            ctlAttribute.addAttribution(
+                '&copy; <a href="http://servdev.co.ke">servdev Solutions</a>'
+            );
+            // ///////////////////////////
+            // ctlCompass = L.control.custom({
+            //     position: 'topleft',
+            //     content: '<button type="button" class="btn btn-default">' +
+            //         '    <i class="fa fa-crosshairs"></i>' +
+            //         '</button>' +
+            //         '<button type="button" class="btn btn-info">' +
+            //         '    <i class="fa fa-compass"></i>' +
+            //         '</button>' +
+            //         '<button type="button" class="btn btn-primary">' +
+            //         '    <i class="fa fa-spinner fa-pulse fa-fw"></i>' +
+            //         '</button>' +
+            //         '<button type="button" class="btn btn-danger">' +
+            //         '    <i class="fa fa-times"></i>' +
+            //         '</button>' +
+            //         '<button type="button" class="btn btn-success">' +
+            //         '    <i class="fa fa-check"></i>' +
+            //         '</button>' +
+            //         '<button type="button" class="btn btn-warning">' +
+            //         '    <i class="fa fa-exclamation-triangle"></i>' +
+            //         '</button>',
+            //     classes: 'btn-group-vertical btn-group-sm',
+            //     style:
+            //     {
+            //         margin: '10px',
+            //         padding: '0px 0 0 0',
+            //         cursor: 'pointer',
+            //     },
+            //     datas:
+            //     {
+            //         'foo': 'bar',
+            //     },
+            //     events:
+            //     {
+            //         click: function (data) {
+            //             console.log('wrapper div element clicked');
+            //             console.log(data);
+            //         },
+            //         dblclick: function (data) {
+            //             console.log('wrapper div element dblclicked');
+            //             console.log(data);
+            //         },
+            //         contextmenu: function (data) {
+            //             console.log('wrapper div element contextmenu');
+            //             console.log(data);
+            //         },
+            //     }
+            // })
+            //     .addTo(mymap);
+            // //////////////////////////
+            // scale
+            ctlScale = L.control
+                .scale({ position: "bottomleft", metric: false, maxWidth: 200 })
+                .addTo(mymap);
+            ctlMouseposition = L.control.mousePosition().addTo(mymap);
+            // draw tool bar
+            ctlDraw = new L.Control.Draw({
+                draw: {
+                    circle: false,
+                },
+                edit: {
+                    featureGroup: fgpDrawnItems,
+                },
+            }).addTo(mymap);
+
+            mymap.on('draw:created', function (e) {
+                console.log(e);
+                fgpDrawnItems.addLayer(e.layer)
+            })
+            // drawtool end
+
+            // ************ Location Events **************
+            setInterval(function () {
+                mymap.locate()
+            }, 50000)
+            mymap.on('contextmenu', function (e) {
+                var dtCurrentTime = new Date();
+                L.marker(e.latlng).addTo(mymap).bindPopup(e.latlng.toString() + "<br>" + dtCurrentTime
+                    .toString());
+            });
+
+            mymap.on('keypress', function (e) {
+                if (e.originalEvent.key == "l") {
+                    mymap.locate();
+                }
+            });
+            mymap.on('locationfound', function (e) {
+                console.log(e);
+                if (mrkCurrentLocation) {
+                    mrkCurrentLocation.remove();
+                }
+                mrkCurrentLocation = L.circle(e.latlng, { radius: e.accuracy / 2 }).addTo(mymap);
+                mymap.setView(e.latlng, 10);
+            });
+
+            mymap.on('locationerror', function (e) {
+                // console.log(e);
+                // alert("Location was not found");
+            })
+
+        });
+
+        // *********  Hotel Functions *****************
+
+        function returnHotelsMarker(json, latlng) {
+            var att = json.properties;
+            if (att.TYPE == 'lodge') {
+                var clrLodge = 'deeppink';
+            } else if (att.TYPE == 'hotel') {
+                var clrLodge = 'cyan';
+            } else if (att.TYPE == 'tented camp') {
+                var clrLodge = 'deeppink';
+            } else {
+                var clrLodge = 'chartreuse';
+            }
+            arHotelIDs.push(att.nest_id.toString());
+            return L.circle(latlng, { radius: 804, color: clrLodge, fillColor: 'chartreuse', fillOpacity: 0.5 }).bindTooltip("<h4>Eagle Nest: " + att.nest_id + "</h4>Status: " + att.status);
+        }
+
+        function filterHospital(json) {
+            var att = json.properties;
+            var optFilter = $("input[name=fltHotel]:checked").val();
+            if (optFilter == 'ALL') {
+                return true;
+            } else {
+                return (att.status == optFilter);
+            }
+        }
+
+        $("#txtFindHotel").on('keyup paste', function () {
+            var val = $("#txtFindHotel").val();
+            testLayerAttribute(arHotelIDs, val, "Eagle Nest ID", "#divFindEagle", "#divEagleError", "#btnFindEagle");
+        });
+
+        $("#btnFindHotel").click(function () {
+            var val = $("#txtFindHotel").val();
+            var lyr = returnLayerByAttribute(lyrEagleNests, 'nest_id', val);
+            if (lyr) {
+                if (lyrSearch) {
+                    lyrSearch.remove();
+                }
+                lyrSearch = L.circle(lyr.getLatLng(), { radius: 800, color: 'red', weight: 10, opacity: 0.5, fillOpacity: 0 }).addTo(mymap);
+                mymap.setView(lyr.getLatLng(), 14);
+                var att = lyr.feature.properties;
+                $("#divHoteleData").html("<h4 class='text-center'>Attributes</h4><h5>Status: " + att.status + "</h5>");
+                $("#divHotelError").html("");
+                fgpDrawnItems.clearLayers();
+                fgpDrawnItems.addLayer(lyr);
+            } else {
+                $("#divEagleError").html("**** Eagle Nest ID not found ****");
+            }
+        });
+
+        $("#lblEagle").click(function () {
+            $("#divHoteleData").toggle();
+        });
+
+        $("input[name=fltEagle]").click(function () {
+            arHotelIDs = [];
+            lyrEagleNests.refresh();
+        });
+
+
+    </script>
+</body>
+
+</html>
